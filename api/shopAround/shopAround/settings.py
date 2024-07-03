@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'endpoints',
+    'rest_framework',
+    'api'
 ]
 
 MIDDLEWARE = [
@@ -76,13 +77,22 @@ WSGI_APPLICATION = 'shopAround.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-"default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "Local server",
-        "USER": "postgres",
-        "PASSWORD": "postgres",
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'postgres',        # Name of your existing PostgreSQL database
+    #     'USER': '',        # Your PostgreSQL username
+    #     'PASSWORD': '',# Your PostgreSQL password
+    #     'HOST': '',                 # Set to 'localhost' for local databases
+    #     'PORT': '6543',                      # Default PostgreSQL port
+    # }
+        'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'test',        # Name of your existing PostgreSQL database
+        'USER': 'username',        # Your PostgreSQL username
+        'PASSWORD': '',# Your PostgreSQL password
+        'HOST': 'localhost',                 # Set to 'localhost' for local databases
+        'PORT': '5432',                      # Default PostgreSQL port
     }
 }
 
@@ -127,3 +137,12 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'DEFAULT_PERMISION_CLASSES': [],
+}
