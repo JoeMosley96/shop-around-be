@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'testdb',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -88,9 +87,9 @@ DATABASES = {
     # }
         'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'test',        # Name of your existing PostgreSQL database
-        'USER': 'username',        # Your PostgreSQL username
-        'PASSWORD': '',# Your PostgreSQL password
+        'NAME': 'shoparound',        # Name of your existing PostgreSQL database
+        'USER': 'postgres',        # Your PostgreSQL username
+        'PASSWORD': 'postgres',# Your PostgreSQL password
         'HOST': 'localhost',                 # Set to 'localhost' for local databases
         'PORT': '5432',                      # Default PostgreSQL port
     }

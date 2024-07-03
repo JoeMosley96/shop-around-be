@@ -1,0 +1,11 @@
+product,description,brand,size,product_photo_url,category_id
+Apple,Fresh red apples,FreshFarms,1kg,http://example.com/apple.jpg,1
+Banana,Organic bananas,GreenEarth,1kg,http://example.com/banana.jpg,1
+Carrot,Crunchy carrots,VeggieDelight,1kg,http://example.com/carrot.jpg,2
+Broccoli,Fresh broccoli,VeggieDelight,500g,http://example.com/broccoli.jpg,2
+Milk,Whole milk,DairyPure,1L,http://example.com/milk.jpg,3
+Cheese,Cheddar cheese,DairyPure,200g,http://example.com/cheese.jpg,3
+Orange Juice,Fresh orange juice,JuiceWorld,1L,http://example.com/oj.jpg,4
+Cola,Soft drink,ColaCo,1.5L,http://example.com/cola.jpg,4
+Chips,Potato chips,Snacky,200g,http://example.com/chips.jpg,5
+Cookies,Chocolate chip cookies,Snacky,300g,http://example.com/cookies.jpg,5
