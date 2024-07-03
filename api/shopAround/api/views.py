@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from .models import Products
+from .serializers import ProductsSerializer
 from django.http import JsonResponse
 import importlib.resources
 import json
@@ -8,3 +10,7 @@ def index(request):
         data = json.load(file)
 
     return JsonResponse(data)
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Products.objects.all()
+    serializer_class = ProductsSerializer

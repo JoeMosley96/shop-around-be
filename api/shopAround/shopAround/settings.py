@@ -38,8 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'api',
-    'products'
+    'api'
 ]
 
 MIDDLEWARE = [
@@ -77,22 +76,22 @@ WSGI_APPLICATION = 'shopAround.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',        # Name of your existing PostgreSQL database
-        'USER': 'postgres.kxgrbyjvzdvqammlfmce',        # Your PostgreSQL username
-        'PASSWORD': 'northcoders123',# Your PostgreSQL password
-        'HOST': 'aws-0-eu-west-2.pooler.supabase.com',                 # Set to 'localhost' for local databases
-        'PORT': '6543',                      # Default PostgreSQL port
-    }
-    #     'default': {
+    # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'test',        # Name of your existing PostgreSQL database
-    #     'USER': 'mika',        # Your PostgreSQL username
-    #     'PASSWORD': '',# Your PostgreSQL password
-    #     'HOST': 'localhost',                 # Set to 'localhost' for local databases
-    #     'PORT': '5432',                      # Default PostgreSQL port
+    #     'NAME': 'postgres',        # Name of your existing PostgreSQL database
+    #     'USER': 'postgres.kxgrbyjvzdvqammlfmce',        # Your PostgreSQL username
+    #     'PASSWORD': 'northcoders123',# Your PostgreSQL password
+    #     'HOST': 'aws-0-eu-west-2.pooler.supabase.com',                 # Set to 'localhost' for local databases
+    #     'PORT': '6543',                      # Default PostgreSQL port
     # }
+        'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'test',        # Name of your existing PostgreSQL database
+        'USER': 'mika',        # Your PostgreSQL username
+        'PASSWORD': '',# Your PostgreSQL password
+        'HOST': 'localhost',                 # Set to 'localhost' for local databases
+        'PORT': '5432',                      # Default PostgreSQL port
+    }
 }
 
 
