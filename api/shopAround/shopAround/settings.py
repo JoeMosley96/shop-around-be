@@ -88,7 +88,7 @@ DATABASES = {
         'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'test',        # Name of your existing PostgreSQL database
-        'USER': 'freedombox',        # Your PostgreSQL username
+        'USER': 'root',        # Your PostgreSQL username
         'PASSWORD': '',# Your PostgreSQL password
         'HOST': 'localhost',                 # Set to 'localhost' for local databases
         'PORT': '5432',                      # Default PostgreSQL port
