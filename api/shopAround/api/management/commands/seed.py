@@ -10,7 +10,7 @@ class Command(BaseCommand):
         self.seed_products()
         self.seed_users()
         self.seed_favorite_products()
-        self.seed_priceReports()
+        # self.seed_priceReports()
         self.stdout.write(self.style.SUCCESS('Data successfully seeded'))
 
 

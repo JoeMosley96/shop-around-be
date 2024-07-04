@@ -3,6 +3,7 @@ from .models import Products, Stores, PriceReport, Favorite_Products, Users
 from .serializers import ProductsSerializer, StoresSerializer, PriceReportSerializer, FavouriteProductsSerializer, UsersSerializer
 from django.http import JsonResponse
 import importlib.resources
+from .queries import get_local_prices
 import json
 
 def index(request):
@@ -30,3 +31,9 @@ class FavouriteProductsViewSet(viewsets.ModelViewSet):
 class UsersViewSet(viewsets.ModelViewSet):
     queryset = Users.objects.all()
     serializer_class = UsersSerializer
+
+def price_report(request, product_id, lat, lon, rad):
+    price_report = get_local_prices(product_id, lat, lon, rad)
+    return JsonResponse(price_report, safe=False)
+
+
