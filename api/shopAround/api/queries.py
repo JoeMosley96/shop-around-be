@@ -8,7 +8,7 @@ def get_local_prices(product_id, lat, lon, rad):
             ROW_NUMBER() OVER(PARTITION BY store_id ORDER BY created_at DESC) AS rn
         FROM price_reports 
         WHERE product_id = %s)
-    SELECT pr.price_id, pr.price, st.store_name, ST_Distance(
+    SELECT pr.price_id, pr.price, st.store_name, st.lat, st.lon, ST_Distance(
         ST_SetSRID(ST_MakePoint(%s, %s), 4326)::geography,
         ST_SetSRID(ST_MakePoint(st.lon, st.lat), 4326)::geography
     ) AS distance FROM latest_price_report pr
@@ -36,7 +36,9 @@ def get_local_prices(product_id, lat, lon, rad):
             'price_id': row[0],
             'price': row[1],
             'store_name': row[2],
-            'distance': row[3]
+            'latitude': row[3],
+            'longitude': row[4],
+            'distance': row[5]
         }
         price_reports.append(price_report)
     
