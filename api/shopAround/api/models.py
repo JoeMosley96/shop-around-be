@@ -49,6 +49,7 @@ class PriceReport(models.Model):
     price = models.DecimalField(max_digits=10,decimal_places=2)
     store = models.ForeignKey("Stores", on_delete=models.CASCADE)
     product = models.ForeignKey("Products",on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = 'price_reports'

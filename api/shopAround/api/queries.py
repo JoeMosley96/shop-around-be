@@ -3,12 +3,17 @@ from .models import PriceReport, Stores
 
 def get_local_prices(product_id, lat, lon, rad):
     query ='''
+    WITH latest_price_report AS (
+        SELECT price_reports.*, 
+            ROW_NUMBER() OVER(PARTITION BY store_id ORDER BY created_at DESC) AS rn
+        FROM price_reports 
+        WHERE product_id = %s)
     SELECT pr.price_id, pr.price, st.store_name, ST_Distance(
         ST_SetSRID(ST_MakePoint(%s, %s), 4326)::geography,
         ST_SetSRID(ST_MakePoint(st.lon, st.lat), 4326)::geography
-    ) AS distance FROM price_reports pr
+    ) AS distance FROM latest_price_report pr
     INNER JOIN stores st ON pr.store_id = st.store_id
-    WHERE pr.product_id = %s 
+    WHERE pr.rn = 1 
     AND ST_DWithin(
     ST_SetSRID(ST_MakePoint(%s, %s), 4326)::geography, 
     ST_SetSRID(ST_MakePoint(st.lon, st.lat), 4326)::geography, 
@@ -18,7 +23,7 @@ def get_local_prices(product_id, lat, lon, rad):
     
     '''
 
-    params = [lon, lat, product_id, lon, lat, rad]
+    params = [product_id, lon, lat, lon, lat, rad]
     
     with connection.cursor() as cursor:
         cursor.execute(query, params)
