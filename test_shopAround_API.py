@@ -1,5 +1,6 @@
 ENDPOINT = "http://127.0.0.1:8000/api/products/"
 
+
 import pytest
 import requests
 # from xprocess import ProcessStarter
@@ -24,10 +25,11 @@ import requests
 
 
 # @pytest.mark.xfail
-# def test_getRequest():
-#     response = requests.get(ENDPOINT)
-#     # print("this is a response: ", response.json()[0]) 
-#     # print("this is the response status code: ", response.status_code) 
+def test_getRequest():
+    response = requests.get(ENDPOINT)
+    response2 = requests.get()
+    # print("this is a response: ", response.json()[0]) 
+    # print("this is the response status code: ", response.status_code) 
 
 #     desiredResult = [
 #     {
@@ -129,21 +131,39 @@ import requests
 #         "category": 1
 #     }
 # ]  
-#     assert response.status_code == 200
+    createEntry()
+    assert response.status_code == 200
 #     assert response.json() == desiredResult
 
 
-def test_postProductRequest():
+# def test_postProductRequest():
+#     payload = {
+#         "product": "test",
+#         "description": "test",
+#         "brand": "test",
+#         "size": "test",
+#         "product_photo_url": "test",
+#         "category": 1
+#     }
+#     response = requests.post(ENDPOINT, json=payload)
+#     print(response.json())
+#     print(response.status_code)
+
+def createEntry():
     payload = {
-        "product": "test",
-        "description": "test",
-        "brand": "test",
-        "size": "test",
-        "product_photo_url": "test",
-        "category": 1
+    "product_id": 100,
+    "product": "test",
+    "description": "test",
+    "brand": "test",
+    "size": "test",
+    "product_photo_url": "test",
+    "category": 1
     }
-    response = requests.post(ENDPOINT, json=payload)
-    print(response.json())
-    print(response.status_code)
+    print("entry created")
+    print(requests.get(ENDPOINT + "100").json())
+    return requests.post(ENDPOINT, json=payload)
 
-
+# def test_postDeleteRequest():
+#     createEntry()
+    # response = requests.delete(ENDPOINT + "2")
+    # print(response.status_code)
