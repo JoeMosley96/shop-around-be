@@ -1,6 +1,6 @@
 from django.urls import path, include, register_converter
 from rest_framework.routers import DefaultRouter
-from .views import ProductViewSet, StoresViewSet, PriceReportViewSet, FavouriteProductsViewSet, UsersViewSet
+from .views import ProductViewSet, StoresViewSet, PriceReportViewSet, FavouriteProductsViewSet, UsersViewSet, CategoriesViewSet
 from .converters import FloatConverter
 from . import views
 
@@ -10,6 +10,7 @@ router.register(r'stores', StoresViewSet)
 router.register(r'prices', PriceReportViewSet)
 router.register(r'favourites', FavouriteProductsViewSet)
 router.register(r'users', UsersViewSet)
+router.register(r'categories', CategoriesViewSet)
 
 
 register_converter(FloatConverter, 'float')
