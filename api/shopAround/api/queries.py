@@ -1,5 +1,5 @@
 from django.db import connection
-from .models import PriceReport, Stores
+# from .models import PriceReport, Stores
 
 def get_local_prices(product_id, lat, lon, rad):
     query ='''
@@ -84,7 +84,64 @@ def get_local_stores(lat, lon, rad):
         local_stores.append(local_store)
         
     return local_stores
+
+def get_favourites_by_user(user_id):
+    query = '''
+    SELECT fp.fav_product_id, pr.product_id, pr.product, pr.brand, pr.size, pr.product_photo_url
+    FROM favourite_products fp
+    JOIN products pr ON fp.product_id = pr.product_id 
+    WHERE FP.user_id = %s;
+    '''
+
+    params = [user_id]
+
+    with connection.cursor() as cursor:
+        cursor.execute(query, params)
+        results = cursor.fetchall()
+
+    favourite_products = []
+    for row in results:
+        favourite_product = {
+            'fav_product_id': row[0],
+            'product_id': row[1],
+            'product': row[2],
+            'brand': row[3],
+            'size': row[4],
+            'product_photo_url': row[5]
+        }
+
+        favourite_products.append(favourite_product)
+
+    return favourite_products
+
+def get_products_by_category_id(category_id):
+    query = '''
+    SELECT product_id, product, description, brand, size, product_photo_url
+    FROM products 
+    WHERE category_id = %s;
+    '''
     
+    params = [category_id]
+
+    with connection.cursor() as cursor:
+        cursor.execute(query, params)
+        results = cursor.fetchall()
+
+    products = []
+    for row in results:
+        product = {
+            'product_id': row[0],
+            'product': row[1],
+            'description': row[2],
+            'brand': row[3],
+            'size': row[4],
+            'product_photo_url': row[5]
+        }
+
+        products.append(product)
+
+    return products
+
 
 
 

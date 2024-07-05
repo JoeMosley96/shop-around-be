@@ -13,7 +13,7 @@ class Command(BaseCommand):
         self.seed_priceReports()
         self.stdout.write(self.style.SUCCESS('Data successfully seeded'))
 
-
+    
 
     def seed_stores(self):
         with open('test_data/stores.csv', newline='') as csvfile:

@@ -3,7 +3,7 @@ from .models import Products, Stores, PriceReport, Favorite_Products, Users
 from .serializers import ProductsSerializer, StoresSerializer, PriceReportSerializer, FavouriteProductsSerializer, UsersSerializer
 from django.http import JsonResponse
 import importlib.resources
-from .queries import get_local_prices, get_local_stores
+from .queries import get_local_prices, get_local_stores, get_favourites_by_user, get_products_by_category_id
 import json
 
 def index(request):
@@ -40,3 +40,11 @@ def local_stores(request, lat, lon):
     rad = float(request.GET.get('rad', 1000))
     stores_reports = get_local_stores(lat, lon, rad)
     return JsonResponse(stores_reports, safe=False)
+
+def favourites (request, user_id):
+    favourite_products_by_user = get_favourites_by_user(user_id)
+    return JsonResponse(favourite_products_by_user, safe=False)
+
+def products_by_category(request, category_id):
+    products_by_category_id = get_products_by_category_id(category_id)
+    return JsonResponse(products_by_category_id, safe=False)

@@ -9,18 +9,33 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
+import dj_database_url
 from pathlib import Path
+from dotenv import load_dotenv
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Determine the environment and load the appropriate .env file
+DJANGO_ENV = os.getenv('DJANGO_ENV', 'production')
+
+if DJANGO_ENV == 'testing':
+    dotenv_path = BASE_DIR / '.env.test'
+else:
+    dotenv_path = BASE_DIR / '.env.prod'
+
+load_dotenv(dotenv_path)
+
+# Get the environment variables
+DATABASE_URL = os.getenv('DATABASE_URL')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-1m1(@6zp3l8e3dfoh)bt6zl9f=kihk**92uh_1*n@iu)=e-s8!'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -85,14 +100,16 @@ DATABASES = {
     #     'HOST': '',                 # Set to 'localhost' for local databases
     #     'PORT': '6543',                      # Default PostgreSQL port
     # }
-        'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'test',        # Name of your existing PostgreSQL database
-        'USER': 'root',        # Your PostgreSQL username
-        'PASSWORD': '',# Your PostgreSQL password
-        'HOST': 'localhost',                 # Set to 'localhost' for local databases
-        'PORT': '5432',                      # Default PostgreSQL port
-    }
+    #     'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': DATABASE_NAME,        # Name of your existing PostgreSQL database
+    #     'USER': DATABASE_USER,        # Your PostgreSQL username
+    #     'PASSWORD': DATABASE_PASSWORD,# Your PostgreSQL password
+    #     'HOST': DATABASE_HOST,                 # Set to 'localhost' for local databases
+    #     'PORT': DATABASE_PORT,                      # Default PostgreSQL port
+    # }
+
+    'default': dj_database_url.parse(DATABASE_URL)
 }
 
 

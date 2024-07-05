@@ -18,5 +18,7 @@ urlpatterns = [
     path('', include(router.urls)),
     path('', views.index, name="index"),
     path('price-report/<int:product_id>/<float:lat>/<float:lon>/<int:rad>/', views.price_report, name='price_report'),
-    path('stores/<float:lat>/<float:lon>/', views.local_stores, name='local_stores')
+    path('stores/<float:lat>/<float:lon>/', views.local_stores, name='local_stores'),
+    path('users/<int:user_id>/favourites/', views.favourites, name='favourites'),
+    path('categories/<int:category_id>/products/', views.products_by_category, name='products_by_category')
 ]
