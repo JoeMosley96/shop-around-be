@@ -41,7 +41,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
-ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS if host.strip()]
+
 
 
 # Application definition
@@ -87,6 +87,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'shopAround.wsgi.application'
 
+PORT= os.getenv('PORT', 8000)
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
