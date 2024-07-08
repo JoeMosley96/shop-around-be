@@ -9,6 +9,7 @@ djangorestframework = "*"
 psycopg2-binary = "==2.9.6"
 python-dotenv = "*"
 dj-database-url = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 pytest = "*"
