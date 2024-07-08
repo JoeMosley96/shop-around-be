@@ -2,16 +2,55 @@
   "GET /api": {
     "description": "serves up a json representation of all the available endpoints of the api"
   },
-  "price-report/<int:product_id>/<float:lat>/<float:lon>/<int:rad>/": {
+  "GET api/price-report/<int:product_id>/<float:lat>/<float:lon>/<int:rad>/": {
     "description": "serves up a json of stores which sell the product within a radius of a location and the latest reported price",
     "example response": [
       {
-
+        "price_id": 5,
+        "price": "10.00",
+        "store_id": 3,
+        "store_name": "WHSmith",
+        "latitude": "53.7976879000",
+        "longitude": "-1.5439129000",
+        "distance": 259.8866234
       }
     ]
   },
-  "GET /api/products": {
-    "description": "serves up a json of all products",
+  "GET api/stores/<float:lat>/<float:lon>/": {
+    "description": "serves up a json of all stores within radius which defaults to 1000m",
+    "queries": ["rad"],
+    "example response": [
+      {
+        "store_id": 1,
+        "store_name": "Vue Cinema Leeds - The Light",
+        "lat": "53.7997617000",
+        "lon": "-1.5457255000",
+        "monday": "Monday: 10:00 AM – 3:00 AM",
+        "tuesday": "Tuesday: 10:00 AM – 3:00 AM",
+        "wednesday": "Wednesday: 10:00 AM – 3:00 AM",
+        "thursday": "Thursday: 10:00 AM – 3:00 AM",
+        "friday": "Friday: 10:00 AM – 3:00 AM",
+        "saturday": "Saturday: 10:00 AM – 3:00 AM",
+        "sunday": "Sunday: 10:00 AM – 3:00 AM",
+        "distance": 0.0
+      }
+    ]
+  },
+  "GET api/users/<int:user_id>/favourites/": {
+    "description": "serves up a json of a users favourite products",
+    "example response": [
+      {
+        "fav_product_id": 1,
+        "product_id": 1,
+        "product": "Apple",
+        "brand": "FreshFarms",
+        "size": "1kg",
+        "product_photo_url": "http://example.com/apple.jpg"
+      }
+    ]
+  },
+  "GET api/categories/<int:category_id>/products/": {
+    "description": "serves up a json of a users favourite products",
     "example response": [
       {
         "product_id": 1,
@@ -19,8 +58,22 @@
         "description": "Fresh red apples",
         "brand": "FreshFarms",
         "size": "1kg",
-        "product_photo_url": "http://example.com/apple.jpg",
-        "category": 1
+        "product_photo_url": "http://example.com/apple.jpg"
+      }
+    ]
+  },
+
+  "GET /api/products": {
+    "description": "serves up a json of all products",
+    "example response": [
+      {
+        "price_id": 5,
+        "price": "10.00",
+        "store_id": 3,
+        "store_name": "WHSmith",
+        "latitude": "53.7976879000",
+        "longitude": "-1.5439129000",
+        "distance": 259.8866234
       }
     ]
   },
