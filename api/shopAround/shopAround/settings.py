@@ -107,6 +107,7 @@ DATABASES = {
     #     'HOST': '',                 # Set to 'localhost' for local databases
     #     'PORT': '6543',                      # Default PostgreSQL port
     # }
+
     #     'default': {
     #     'ENGINE': 'django.db.backends.postgresql',
     #     'NAME': DATABASE_NAME,        # Name of your existing PostgreSQL database
