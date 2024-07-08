@@ -169,4 +169,5 @@ REST_FRAMEWORK = {
         # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
     'DEFAULT_PERMISION_CLASSES': [],
+    'EXCEPTION_HANDLER': 'utils.exceptionHandler.customExceptionHandler'
 }
