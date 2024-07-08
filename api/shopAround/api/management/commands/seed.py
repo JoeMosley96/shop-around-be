@@ -13,43 +13,43 @@ class Command(BaseCommand):
         self.seed_priceReports()
         self.stdout.write(self.style.SUCCESS('Data successfully seeded'))
 
-
+    
 
     def seed_stores(self):
-        with open('stores.csv', newline='') as csvfile:
+        with open('test_data/stores.csv', newline='') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 Stores.objects.create(**row)
 
     def seed_categories(self):
-        with open('categories.csv', newline='') as csvfile:
+        with open('test_data/categories.csv', newline='') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 Categories.objects.create(**row)
 
     def seed_products(self):
-        with open('products.csv', newline='') as csvfile:
+        with open('test_data/products.csv', newline='') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 Products.objects.create(**row)
 
 
     def seed_users(self):
-        with open('users.csv', newline='') as csvfile:
+        with open('test_data/users.csv', newline='') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 Users.objects.create(**row)
 
     
     def seed_favorite_products(self):
-        with open('favproducts.csv', newline='') as csvfile:
+        with open('test_data/favproducts.csv', newline='') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 Favorite_Products.objects.create(**row)
 
 
     def seed_priceReports(self):
-        with open('pricereports.csv', newline='') as csvfile:
+        with open('test_data/pricereports.csv', newline='') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 PriceReport.objects.create(**row)
