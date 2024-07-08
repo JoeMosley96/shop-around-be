@@ -19,7 +19,7 @@ def get_local_prices(product_id, lat, lon, rad):
     ST_SetSRID(ST_MakePoint(st.lon, st.lat), 4326)::geography, 
     %s
     )
-    ORDER BY distance;
+    ORDER BY pr.price;
     
     '''
 
