@@ -2,6 +2,14 @@
   "GET /api": {
     "description": "serves up a json representation of all the available endpoints of the api"
   },
+  "price-report/<int:product_id>/<float:lat>/<float:lon>/<int:rad>/": {
+    "description": "serves up a json of stores which sell the product within a radius of a location and the latest reported price",
+    "example response": [
+      {
+
+      }
+    ]
+  },
   "GET /api/products": {
     "description": "serves up a json of all products",
     "example response": [
