@@ -10,6 +10,8 @@ psycopg2-binary = "==2.9.6"
 python-dotenv = "*"
 dj-database-url = "*"
 django-cors-headers = "*"
+pytest-django = "*"
+requests = "*"
 
 [dev-packages]
 pytest = "*"
