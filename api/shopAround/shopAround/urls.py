@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from api.utils.views import error_404 , error_500
 
 urlpatterns = [
     path("api/", include("api.urls")),

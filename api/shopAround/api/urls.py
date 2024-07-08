@@ -3,6 +3,7 @@ from rest_framework.routers import DefaultRouter
 from .views import ProductViewSet, StoresViewSet, PriceReportViewSet, FavouriteProductsViewSet, UsersViewSet, CategoriesViewSet
 from .converters import FloatConverter
 from . import views
+from api.utils.views import error_404 , error_500
 
 router = DefaultRouter()
 router.register(r'products', ProductViewSet)
@@ -23,3 +24,6 @@ urlpatterns = [
     path('users/<int:user_id>/favourites/', views.favourites, name='favourites'),
     path('categories/<int:category_id>/products/', views.products_by_category, name='products_by_category')
 ]
+
+handler404 = error_404
+handler500 = error_500
