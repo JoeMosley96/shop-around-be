@@ -1,10 +1,15 @@
 import csv
 from django.core.management.base import BaseCommand
 from api.models import Stores, Categories,Products,Users,Favorite_Products,PriceReport
+from django.core.management import call_command
 
 class Command(BaseCommand):
     help = 'seeding database'
     def handle(self, *args, **kwargs):
+        self.stdout.write('Flushing the database...')
+        call_command('flush', '--no-input')
+        self.stdout.write(self.style.SUCCESS('Database successfully flushed'))
+    
         self.seed_stores()
         self.seed_categories()
         self.seed_products()
