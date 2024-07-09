@@ -13,9 +13,8 @@ def api_client():
 
 @pytest.mark.django_db
 def test_get_products(api_client):
-    url=reverse('api/products/')
 
-    response = api_client.get(url)
+    response = api_client.get(ENDPOINT)
     assert response.status_code == status.HTTP_200_OK
     assert response.data[0] == {
 		"product_id": 1,
@@ -26,32 +25,36 @@ def test_get_products(api_client):
 		"product_photo_url": "http://example.com/apple.jpg",
 		"category": 1
 	}
+    assert len(response.json()) == 10
 
-# @pytest.mark.django_db
-# def test_getRequest():
-#     response = requests.get(ENDPOINT)
-#     print(f"Recieved {len(response.json())} items")
-#     assert len(response.json()) == 10
-#     assert response.status_code == 200 
 
 # def getProducts():
 #     return requests.get(ENDPOINT)
 
-# @pytest.mark.django_db
-# def test_postProductRequest():
-#     payload = {
-#         "product": "test",
-#         "description": "test",
-#         "brand": "test",
-#         "size": "test",
-#         "product_photo_url": "test",
-#         "category": 1
-#     }
-#     response = requests.post(ENDPOINT, json=payload)
-#     print("response status code: ",response.status_code)
-#     print("The following product has been created: ", response.json())
-#     assert response.status_code == 201
-#     # deleteRequest(response.json()["product_id"])
+@pytest.mark.django_db
+def test_postProductRequest(api_client):
+    payload = {
+        "product": "test",
+        "description": "test",
+        "brand": "test",
+        "size": "test",
+        "product_photo_url": "test",
+        "category": 1
+    }
+    response =  api_client.post(ENDPOINT, data=payload, format='json')
+    print("response status code: ",response.status_code)
+    print("The following product has been created: ", response.json())
+    assert response.status_code == 201
+    assert response.data == {
+        "product_id": 11,
+    	"product": "test",
+        "description": "test",
+        "brand": "test",
+        "size": "test",
+        "product_photo_url": "test",
+        "category": 1
+	}
+    # deleteRequest(response.json()["product_id"])
 
 
 # def createEntry():
