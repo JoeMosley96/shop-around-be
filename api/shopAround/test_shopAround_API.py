@@ -3,12 +3,13 @@ ENDPOINT = "http://127.0.0.1:8000/api/products/"
 import os
 from django.urls import reverse
 from rest_framework.test import APIClient
+from rest_framework import status
 import pytest
 import requests
 
-# @pytest.fixture
-# def api_client():
-#     return APIClient()
+@pytest.fixture
+def api_client():
+    return APIClient()
 
 @pytest.mark.django_db
 def test_get_products(api_client):
