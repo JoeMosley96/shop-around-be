@@ -61,7 +61,7 @@ class PriceReportViewSet(viewsets.ModelViewSet):
 class FavouriteProductsViewSet(viewsets.ModelViewSet):
     queryset = Favorite_Products.objects.all()
     serializer_class = FavouriteProductsSerializer
-def retrieve(self, request, pk=None):
+    def retrieve(self, request, pk=None):
         try:
             favourites = get_object_or_404(self.queryset, pk=pk)
             serializer = self.get_serializer(favourites)
@@ -75,7 +75,7 @@ def retrieve(self, request, pk=None):
 class UsersViewSet(viewsets.ModelViewSet):
     queryset = Users.objects.all()
     serializer_class = UsersSerializer
-def retrieve(self, request, pk=None):
+    def retrieve(self, request, pk=None):
         try:
             user = get_object_or_404(self.queryset, pk=pk)
             serializer = self.get_serializer(user)
@@ -88,7 +88,7 @@ def retrieve(self, request, pk=None):
 class CategoriesViewSet(viewsets.ModelViewSet):
     queryset = Categories.objects.all()
     serializer_class = CategoriesSerializer
-def retrieve(self, request, pk=None):
+    def retrieve(self, request, pk=None):
         try:
             categories = get_object_or_404(self.queryset, pk=pk)
             serializer = self.get_serializer(categories)
