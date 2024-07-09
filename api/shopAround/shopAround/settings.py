@@ -121,12 +121,8 @@ DATABASES = {
     'default': dj_database_url.parse(DATABASE_URL)
 }
 
-print(DATABASES['default'])
-
 if 'test' in sys.argv or 'pytest' in sys.argv:
     DATABASES['default']['NAME'] = 'test_' + DATABASES['default']['NAME']
-
-print(DATABASES['default'])
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
