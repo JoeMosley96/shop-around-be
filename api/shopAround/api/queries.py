@@ -142,7 +142,23 @@ def get_products_by_category_id(category_id):
 
     return products
 
+def check_category_id(category_id):
+    query = '''
+    SELECT *
+    FROM categories 
+    WHERE category_id = %s;
+    '''
+    
+    params = [category_id]
 
+    with connection.cursor() as cursor:
+        cursor.execute(query, params)
+        results = cursor.fetchall()
+
+    if len(results) == 0:
+        return False
+    else:
+        return True
 
 
 
