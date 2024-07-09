@@ -22,7 +22,7 @@ def test_get_products(api_client):
 		"description": "Fresh red apples",
 		"brand": "FreshFarms",
 		"size": "1kg",
-		"product_photo_url": "http://example.com/apple.jpg",
+		"product_photo_url": "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 		"category": 1
 	}
     assert len(response.json()) == 10
