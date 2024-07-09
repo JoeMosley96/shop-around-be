@@ -3,7 +3,7 @@ from .models import Products, Stores, PriceReport, Favorite_Products, Users, Cat
 from .serializers import ProductsSerializer, StoresSerializer, PriceReportSerializer, FavouriteProductsSerializer, UsersSerializer, CategoriesSerializer
 from django.http import JsonResponse
 import importlib.resources
-from .queries import get_local_prices, get_local_stores, get_favourites_by_user, get_products_by_category_id
+from .queries import get_local_prices, get_local_stores, get_favourites_by_user, get_products_by_category_id, check_category_id, check_user_id, check_product_id
 import json
 
 def index(request):
@@ -38,17 +38,33 @@ class CategoriesViewSet(viewsets.ModelViewSet):
 
 def price_report(request, product_id, lat, lon, rad):
     price_report = get_local_prices(product_id, lat, lon, rad)
-    return JsonResponse(price_report, safe=False)
+    product_exists = check_product_id(product_id)
+    if(product_exists == True):
+        return JsonResponse(price_report, safe=False)
+    else:
+        return JsonResponse({'error': 'Product not found'}, status=404)
 
 def local_stores(request, lat, lon):
-    rad = float(request.GET.get('rad', 1000))
+    try:
+        rad = float(request.GET.get('rad', 1000))
+    except:
+        return JsonResponse({'error': 'radi should be an integer'}, status=400)
+    
     stores_reports = get_local_stores(lat, lon, rad)
     return JsonResponse(stores_reports, safe=False)
 
 def favourites (request, user_id):
     favourite_products_by_user = get_favourites_by_user(user_id)
-    return JsonResponse(favourite_products_by_user, safe=False)
+    user_exists = check_user_id(user_id)
+    if(user_exists == True):
+        return JsonResponse(favourite_products_by_user, safe=False)
+    else:
+        return JsonResponse({'error': 'User not found'}, status=404)
 
 def products_by_category(request, category_id):
     products_by_category_id = get_products_by_category_id(category_id)
-    return JsonResponse(products_by_category_id, safe=False)
+    category_exists = check_category_id(category_id)
+    if(category_exists == True):
+        return JsonResponse(products_by_category_id, safe=False)
+    else:
+        return JsonResponse({'error': 'Category not found'}, status=404)

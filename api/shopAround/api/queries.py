@@ -160,5 +160,38 @@ def check_category_id(category_id):
     else:
         return True
 
+def check_user_id(user_id):
+    query = '''
+    SELECT *
+    FROM users 
+    WHERE user_id = %s;
+    '''
+    
+    params = [user_id]
 
+    with connection.cursor() as cursor:
+        cursor.execute(query, params)
+        results = cursor.fetchall()
 
+    if len(results) == 0:
+        return False
+    else:
+        return True
+
+def check_product_id(product_id):
+    query = '''
+    SELECT *
+    FROM products 
+    WHERE product_id = %s;
+    '''
+    
+    params = [product_id]
+
+    with connection.cursor() as cursor:
+        cursor.execute(query, params)
+        results = cursor.fetchall()
+
+    if len(results) == 0:
+        return False
+    else:
+        return True
