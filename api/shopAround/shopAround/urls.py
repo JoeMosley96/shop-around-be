@@ -16,13 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from api.utils.views import error_404 , error_500
+from api.utils.views import error_400, error_404 , error_500
 
 urlpatterns = [
     path("api/", include("api.urls")),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
-
+handler400 = error_400
 handler404 = error_404
 handler500 = error_500

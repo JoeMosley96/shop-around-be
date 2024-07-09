@@ -16,87 +16,57 @@ def index(request):
 
     return JsonResponse(data)
 
+def handle_response(self, request, table_name, pk):
+    try:
+        
+        table = get_object_or_404(self.queryset, pk=pk)
+        serializer = self.get_serializer(table)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Http404:
+        return Response({"error": f"{table_name} not found"}, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        if type(pk) != int:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Products.objects.all()
     serializer_class = ProductsSerializer
 
     def retrieve(self, request, pk=None):
-        try:
-            product = get_object_or_404(self.queryset, pk=pk)
-            serializer = self.get_serializer(product)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except Http404:
-            return Response({"error": "Product not found"}, status=status.HTTP_404_NOT_FOUND)
-        except Exception as e:
-            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
+        return handle_response(self, request, "product", pk)
 
 class StoresViewSet(viewsets.ModelViewSet):
     queryset = Stores.objects.all()
     serializer_class = StoresSerializer
 
     def retrieve(self, request, pk=None):
-        try:
-            stores = get_object_or_404(self.queryset, pk=pk)
-            serializer = self.get_serializer(stores)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except Http404:
-            return Response({"error": "Store not found"}, status=status.HTTP_404_NOT_FOUND)
-        except Exception as e:
-            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)    
+        return handle_response(self, request, "store", pk)   
 
 class PriceReportViewSet(viewsets.ModelViewSet):
     queryset = PriceReport.objects.all()
     serializer_class = PriceReportSerializer
     def retrieve(self, request, pk=None):
-        try:
-            price_report = get_object_or_404(self.queryset, pk=pk)
-            serializer = self.get_serializer(price_report)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except Http404:
-            return Response({"error": "Price report not found"}, status=status.HTTP_404_NOT_FOUND)
-        except Exception as e:
-            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return handle_response(self, request, "price report", pk)
 
 class FavouriteProductsViewSet(viewsets.ModelViewSet):
     queryset = Favorite_Products.objects.all()
     serializer_class = FavouriteProductsSerializer
     def retrieve(self, request, pk=None):
-        try:
-            favourites = get_object_or_404(self.queryset, pk=pk)
-            serializer = self.get_serializer(favourites)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except Http404:
-            return Response({"error": "Favourite not found"}, status=status.HTTP_404_NOT_FOUND)
-        except Exception as e:
-            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
+        return handle_response(self, request, "favourite", pk)
 
 class UsersViewSet(viewsets.ModelViewSet):
     queryset = Users.objects.all()
     serializer_class = UsersSerializer
     def retrieve(self, request, pk=None):
-        try:
-            user = get_object_or_404(self.queryset, pk=pk)
-            serializer = self.get_serializer(user)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except Http404:
-            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
-        except Exception as e:
-            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return handle_response(self, request, "user", pk)
 
 class CategoriesViewSet(viewsets.ModelViewSet):
     queryset = Categories.objects.all()
     serializer_class = CategoriesSerializer
     def retrieve(self, request, pk=None):
-        try:
-            categories = get_object_or_404(self.queryset, pk=pk)
-            serializer = self.get_serializer(categories)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except Http404:
-            return Response({"error": "Categories not found"}, status=status.HTTP_404_NOT_FOUND)
-        except Exception as e:
-            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return handle_response(self, request, "category", pk)
 
 def price_report(request, product_id, lat, lon, rad):
     price_report = get_local_prices(product_id, lat, lon, rad)

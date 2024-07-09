@@ -1,5 +1,12 @@
 from django.http import JsonResponse
 
+def error_400(request, exception):
+    message = 'Invalid data request'
+
+    response = JsonResponse(data={'message' : message, 'status_code' : 400})
+    response.status_code = 400
+    return response
+
 def error_404(request, exception):
     message = 'Your URL is bad and you should feel bad'
 
