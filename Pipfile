@@ -12,6 +12,7 @@ dj-database-url = "*"
 django-cors-headers = "*"
 pytest-django = "*"
 requests = "*"
+pytest-describe = "*"
 
 [dev-packages]
 pytest = "*"

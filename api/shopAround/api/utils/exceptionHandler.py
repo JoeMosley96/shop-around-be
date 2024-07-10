@@ -10,10 +10,10 @@ def customExceptionHandler(exc, context):
     response = exception_handler(exc, context)
 
     if response is not None:
-        if 'AuthUserAPIView' in str(context[view]) and exc.status_code == 401:
-            response.status_code = 200
-            response.data = {'is logged in' : False,
-                             'status_code' : 200}
+        # if 'AuthUserAPIView' in str(context[view]) and exc.status_code == 401:
+        #     response.status_code = 200
+        #     response.data = {'is logged in' : False,
+        #                      'status_code' : 200}
         response.data['status_code'] = response.status_code
 
     exception_class = exc.__class__.__name__

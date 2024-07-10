@@ -101,7 +101,7 @@ PORT= os.getenv('PORT', 8000)
 DATABASES = {
 
     # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'ENGINE': 'django.db.backends.postgis',
     #     'NAME': 'postgres',        # Name of your existing PostgreSQL database
     #     'USER': '',        # Your PostgreSQL username
     #     'PASSWORD': '',# Your PostgreSQL password
@@ -110,7 +110,7 @@ DATABASES = {
     # }
 
     #     'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'ENGINE': 'django.db.backends.postgresql.postgis',
     #     'NAME': DATABASE_NAME,        # Name of your existing PostgreSQL database
     #     'USER': DATABASE_USER,        # Your PostgreSQL username
     #     'PASSWORD': DATABASE_PASSWORD,# Your PostgreSQL password
@@ -118,7 +118,7 @@ DATABASES = {
     #     'PORT': DATABASE_PORT,                      # Default PostgreSQL port
     # }
 
-    'default': dj_database_url.parse(DATABASE_URL)
+    'default': dj_database_url.parse(DATABASE_URL, engine='django.contrib.gis.db.backends.postgis')
 }
 
 if 'test' in sys.argv or 'pytest' in sys.argv:
@@ -172,5 +172,5 @@ REST_FRAMEWORK = {
         # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
     'DEFAULT_PERMISION_CLASSES': [],
-    'EXCEPTION_HANDLER': 'utils.exceptionHandler.customExceptionHandler'
+    'EXCEPTION_HANDLER': 'api.utils.exceptionHandler.customExceptionHandler'
 }

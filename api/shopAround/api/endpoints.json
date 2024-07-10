@@ -50,7 +50,7 @@
     ]
   },
   "GET api/categories/<int:category_id>/products/": {
-    "description": "serves up a json of a users favourite products",
+    "description": "serves up a json of all products within a specified category",
     "example response": [
       {
         "product_id": 1,
