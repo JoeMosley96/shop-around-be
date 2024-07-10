@@ -11,7 +11,8 @@ def get_local_prices(product_id, lat, lon, rad):
     SELECT pr.price_id, pr.price, st.store_id, st.store_name, st.lat, st.lon, ST_Distance(
         ST_SetSRID(ST_MakePoint(%s, %s), 4326)::geography,
         ST_SetSRID(ST_MakePoint(st.lon, st.lat), 4326)::geography
-    ) AS distance FROM latest_price_report pr
+    ) AS distance, st.monday, st.tuesday, st.wednesday, st.thursday, st.friday, st.saturday, st.sunday 
+    FROM latest_price_report pr
     INNER JOIN stores st ON pr.store_id = st.store_id
     WHERE pr.rn = 1 
     AND ST_DWithin(
@@ -38,7 +39,14 @@ def get_local_prices(product_id, lat, lon, rad):
             'store_name': row[3],
             'latitude': row[4],
             'longitude': row[5],
-            'distance': row[6]
+            'distance': row[6],
+            "monday" : row[7],
+            "tuesday" : row[8],
+            "wednesday" : row[9],
+            "thursday" : row[10],
+            "friday" : row[11],
+            "saturday" : row[12],
+            "sunday" : row[13]
         }
         price_reports.append(price_report)
     
