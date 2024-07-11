@@ -138,15 +138,7 @@ def test_get_price_report(api_client):
     response200 = api_client.get(ENDPOINT + "price-report/1/53.8006846000/-1.5506170000/1000/")
     assert response200.status_code == status.HTTP_200_OK
     assert len(response200.json()) == 3
-    assert response200.json()[0] == {
-		"price_id": 1,
-		"price": "10.00",
-		"store_id": 2,
-		"store_name": "Forbidden Planet International",
-		"latitude": "53.7991821000",
-		"longitude": "-1.5403808000",
-		"distance": 694.88400949
-	}
+    assert response200.json()[0] == {'price_id': 1, 'price': '10.00', 'store_id': 2, 'store_name': 'Forbidden Planet International', 'latitude': '53.7991821000', 'longitude': '-1.5403808000', 'distance': 694.88400949, 'monday': 'Monday: 9:30\u202fAM\u2009–\u20096:00\u202fPM', 'tuesday': 'Tuesday: 9:30\u202fAM\u2009–\u20096:00\u202fPM', 'wednesday': 'Wednesday: 9:30\u202fAM\u2009–\u20096:00\u202fPM', 'thursday': 'Thursday: 10:00\u202fAM\u2009–\u20096:00\u202fPM', 'friday': 'Friday: 9:30\u202fAM\u2009–\u20096:00\u202fPM', 'saturday': 'Saturday: 9:30\u202fAM\u2009–\u20096:30\u202fPM', 'sunday': 'Sunday: 11:00\u202fAM\u2009–\u20095:00\u202fPM'}
 
     response404_1 = api_client.get(ENDPOINT + "price-report/gwergwergw/53.7976879000/-1.5439129000/100000000/")
     response404_2 = api_client.get(ENDPOINT + "price-report/1/wergwergwerg/-1.5439129000/100000000/")
