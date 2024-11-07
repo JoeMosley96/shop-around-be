@@ -1,4 +1,4 @@
-ShopAround
+# ShopAround
 ShopAround is a mobile application designed to compare prices of products in local shops, helping users find the cheapest options in their area. The app provides functionalities to search for products, find nearby stores, manage favourite items, and browse products by category.
 
 Features
@@ -10,37 +10,39 @@ Features
 
 Tech Stack
 - Backend: Python, Django, Django REST Framework, PostgreSQL with PostGIS extension
-- Frontend: JavaScript, React Native, html
+- Frontend: JavaScript, React Native, Tailwind CSS, Google Maps API, Expo
 - Testing: Pytest
 
 Backend Setup
 
 1) Clone the repository:
-
+```
 git clone https://github.com/JoeMosley96/shop-around-be.git
 cd shoparound
-
+```
 2) Create a virtual environment and activate it:
-
+```
 pipenv shell
-
+```
 3) Install the dependencies:
-
+```
 pipenv install
-
+```
 4) Configure the database:
-
+```
 source setenv.sh test
-
+```
 5) Apply migrations and seed:
-
+```
 python manage.py migrate
+```
+```
 python manage.py seed
-
+```
 6) Run the development server:
-
+```
 python manage.py runserver
-
+```
 Usage
 To use the application.........
 
