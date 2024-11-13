@@ -6,10 +6,10 @@ https://github.com/JoeMosley96/shop-around-fe
 
 Features
 
-- Get Price Report: Find the cheapest price for a desired product within a specified radius from your current location.
+- Go Shopping: Find the cheapest price for a desired product within a specified radius from your current location.
 - Get Local Stores: View all stores within a given radius from your current location.
+- Report Price: Report the price paid for a product and where it was bought.
 - Get Favourites: Manage and view a list of favourite products.
-- Products by Category: Browse products sorted into categories
 
 Tech Stack
 - Backend: Python, Django, Django REST Framework, PostgreSQL with PostGIS extension
