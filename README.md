@@ -1,6 +1,9 @@
 # ShopAround
 ShopAround is a mobile application designed to compare prices of products in local shops, helping users find the cheapest options in their area. The app provides functionalities to search for products, find nearby stores, manage favourite items, and browse products by category.
 
+Front end repo available here:
+https://github.com/JoeMosley96/shop-around-fe
+
 Features
 
 - Get Price Report: Find the cheapest price for a desired product within a specified radius from your current location.
@@ -18,28 +21,32 @@ Backend Setup
 1) Clone the repository:
 ```
 git clone https://github.com/JoeMosley96/shop-around-be.git
-cd shoparound
 ```
-2) Create a virtual environment and activate it:
+2) Navigate to directory
+```
+shop-around-be
+```
+
+3) Create a virtual environment and activate it:
 ```
 pipenv shell
 ```
-3) Install the dependencies:
+4) Install the dependencies:
 ```
 pipenv install
 ```
-4) Configure the database:
+5) Configure the database:
 ```
 source setenv.sh test
 ```
-5) Apply migrations and seed:
+6) Apply migrations and seed:
 ```
 python manage.py migrate
 ```
 ```
 python manage.py seed
 ```
-6) Run the development server:
+7) Run the development server:
 ```
 python manage.py runserver
 ```
