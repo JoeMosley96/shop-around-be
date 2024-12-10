@@ -26,7 +26,6 @@ git clone https://github.com/JoeMosley96/shop-around-be.git
 ```
 shop-around-be
 ```
-
 3) Create a virtual environment and activate it:
 ```
 pipenv shell
